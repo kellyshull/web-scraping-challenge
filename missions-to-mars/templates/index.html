@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Title</title>
+    <title>Mission to Mars</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,13 +10,67 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
+    <div class="container-fluid">
       <div class="jumbotron">
-          <h1 class="display-3">Jumbo heading</h1>
+          <h1 class="display-3">Mission to Mars</h1>
           
           <p class="lead">
               <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scraped Data</a>
           </p>
       </div>
+    </div>
+
+    <!-- News Section -->
+    <div class="row">
+      <div class="col-md-12">
+        <h3><b>Mars News</b></h3>
+        <h4 class="heading">{{mars.nasa_title}}</h4>
+        <p>{{mars.nasa_paragraph}}</p>
+        
+      </div>
+    </div>
+
+    <!-- Featured Image and Table need to put the output on a grid -->
+    <div class="row">
+
+      <!-- featured image -->
+      <div class="col-med-8">
+        <h3><b>Mars Featured Image</b></h3>
+        <img src={{mars.featured_image_url}} height=auto>
+      </div>
+
+      <!-- html table -->
+      <div class="col-md-4">
+        <h3><b>Mars Facts</b></h3>
+        <p>{{mars.mars_html_table | safe}}</p>
+      </div>
+      
+    </div>
+
+    <!-- grid of the 4 hemispheres -->
+    <h2 class='text-center'>Mars Hemispheres</h2>
+      <div class="row">
+        {% for hemisphere in mars.hemisphere_image_urls %}
+              <div class="col-md-6">
+                  <div class="thumbnail">
+                  <img src="{{hemisphere.url | safe}}" width="500" height="600">
+                  <div class="caption">
+                      <h3><b>{{hemisphere.title | safe}}</b></h3>
+                  </div>
+                  </div>
+              </div>
+        {% endfor %}
+
+
+      </div>
+
+    
+
+
+
+
+
+      
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
